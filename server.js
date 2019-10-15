@@ -9,6 +9,8 @@ const port = process.env.PORT || '1117';
 const indexRoute = require('./routes/index');
 const userRoute = require('./routes/users');
 
+app.set('views', path.join(__dirname, 'view'));
+app.set('view engine', 'ejs');
 app.get('env') === 'development' && app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
