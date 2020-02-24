@@ -3,11 +3,19 @@ const chalk = require('chalk');
 const morgan = require('morgan');
 const debug = require('debug')('app');
 const path = require('path');
+const config = require('config');
+const mongoose = require('mongoose');
 
 const app = express();
 const port = process.env.PORT || '1117';
+const Task = require('./models/task')
 const indexRoute = require('./routes/index');
-const userRoute = require('./routes/users');
+const userRoute = require('./routes/users')(Task);
+mongoose.connect(
+  config.get('DB_CONN'),
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  err => (err ? res.send(err) : res.json(debug('connected to DB')))
+);
 
 app.set('views', path.join(__dirname, 'view'));
 app.set('view engine', 'ejs');

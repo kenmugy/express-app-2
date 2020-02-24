@@ -1,3 +1,4 @@
 {
-  "PORT": 1117
+  "PORT": 1117,
+  "DB_CONN": "mongodb://localhost/tasks"
 }
